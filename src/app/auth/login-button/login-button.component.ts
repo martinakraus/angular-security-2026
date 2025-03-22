@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { AuthService } from "@auth0/auth0-angular";
 
 @Component({
   selector: "app-login-button",
@@ -7,7 +8,8 @@ import { Component } from "@angular/core";
   styleUrl: "./login-button.component.scss",
 })
 export class LoginButtonComponent {
+  private readonly auth = inject(AuthService);
   loginWithRedirect() {
-    // ToDo implement login
+    this.auth.loginWithRedirect();
   }
 }
