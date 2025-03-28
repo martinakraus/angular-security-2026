@@ -6,10 +6,10 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <!-- <meta
+    <meta
       http-equiv="Content-Security-Policy"
       content="require-trusted-types-for 'script';"
-    /> -->
+    />
   </head>
   <body>
     <app-root></app-root>
@@ -20,18 +20,25 @@
       <li>Lenny</li>
       <li>Raupy</li>
     </ul>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.2.7/purify.min.js"></script> -->
     <script>
       let dangerousText = `<img src=x onerror=alert('XSS')>`;
       let trustedTypeText = dangerousText;
 
       // Creating a trusted type
       if (window.trustedTypes && trustedTypes.createPolicy) {
-        // Feature testing
-        // ToDo Use DOMPurifier to create a trusted type
-        // trustedTypeText = DOMPurify.sanitize(dangerousText, {
-        //   RETURN_TRUSTED_TYPE: true,
+        // const myPolicy = trustedTypes.createPolicy("customPolicy", {
+        //   createHTML: (string) => {
+        //     console.warn("createHTML called");
+        //     return string.replace(/\</g, "&lt;");
+        //   },
         // });
+        trustedTypes.createPolicy("default", {
+          createHTML: (string) => {
+            console.warn("createHTML called");
+            return string.replace(/\</g, "&lt;");
+          },
+        });
+        // trustedTypeText = myPolicy.createHTML(dangerousText);
       }
 
       document.getElementById("martina").innerHTML = trustedTypeText;
