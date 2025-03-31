@@ -28,13 +28,13 @@
       if (window.trustedTypes && trustedTypes.createPolicy) {
         // const myPolicy = trustedTypes.createPolicy("customPolicy", {
         //   createHTML: (string) => {
-        //     console.warn("createHTML called");
+        //     console.warn("createHTML called by customPolicy");
         //     return string.replace(/\</g, "&lt;");
         //   },
         // });
         trustedTypes.createPolicy("default", {
           createHTML: (string) => {
-            console.warn("createHTML called");
+            console.warn("createHTML called by default policy");
             return string.replace(/\</g, "&lt;");
           },
         });
