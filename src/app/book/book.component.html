@@ -3,15 +3,16 @@
   type="search"
   placeholder="Filter your books..."
   (input)="updateBookSearchTerm($event)"
-/>
+  />
 
 <div>
   <a routerLink="new">Create Book</a>
 </div>
 
 
-<app-book-card
-  [content]="book"
-  (detailClick)="goToBookDetails($event)"
-  *ngFor="let book of books() | bookFilter: bookSearchTerm"
-></app-book-card>
+@for (book of books() | bookFilter: bookSearchTerm; track book) {
+  <app-book-card
+    [content]="book"
+    (detailClick)="goToBookDetails($event)"
+  ></app-book-card>
+}
