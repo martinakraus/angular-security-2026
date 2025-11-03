@@ -9,9 +9,11 @@
   <label class="form-field">
     <span>Title</span>
     <input formControlName="title" />
-    <small *ngIf="form.get('title')?.dirty && form.get('title')?.hasError('required')">
-      Please insert a title.
-    </small>
+    @if (form.get('title')?.dirty && form.get('title')?.hasError('required')) {
+      <small>
+        Please insert a title.
+      </small>
+    }
   </label>
 
   <label class="form-field">
@@ -20,21 +22,25 @@
   </label>
 
   <ng-container formArrayName="authors">
-    <ng-container *ngFor="let author of authors.controls; let i = index">
+    @for (author of authors.controls; track author; let i = $index) {
       <label class="form-field">
         <span>Author</span>
         <input [formControlName]="i" />
-        <small *ngIf="author?.dirty && author?.hasError('required')">
-          Please insert an Author.
-        </small>
-        <small *ngIf="author?.dirty && author?.hasError('invalidAuthor')">
-          Der Name eines Autors darf keine Zahlen beinhalten!
-        </small>
+        @if (author?.dirty && author?.hasError('required')) {
+          <small>
+            Please insert an Author.
+          </small>
+        }
+        @if (author?.dirty && author?.hasError('invalidAuthor')) {
+          <small>
+            Der Name eines Autors darf keine Zahlen beinhalten!
+          </small>
+        }
       </label>
       <button (click)="deleteAuthor(i)">
         Remove Author
       </button>
-    </ng-container>
+    }
   </ng-container>
   <button type="button" (click)="addAuthor()">
     Author hinzufügen
@@ -55,7 +61,9 @@
   </div>
 </form>
 
-<div *ngIf="submitted">
-  <h2>Successfully submitted</h2>
-  <app-book-card [content]="newBook"></app-book-card>
-</div>
+@if (submitted) {
+  <div>
+    <h2>Successfully submitted</h2>
+    <app-book-card [content]="newBook"></app-book-card>
+  </div>
+}
