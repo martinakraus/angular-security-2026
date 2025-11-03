@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Book } from '../book';
 import { BookApiService } from '../book-api.service';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-book-detail',
-    imports: [AsyncPipe, NgIf],
+    imports: [AsyncPipe],
     templateUrl: './book-detail.component.html',
     styleUrl: './book-detail.component.scss'
 })
