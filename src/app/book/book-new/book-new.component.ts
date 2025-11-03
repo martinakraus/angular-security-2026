@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgForOf, NgIf } from '@angular/common';
+
 import { BookApiService } from '../book-api.service';
 import { take } from 'rxjs';
 import { validAuthorName } from '../validators/author.validator';
@@ -9,7 +9,7 @@ import { BookCardComponent } from '../book-card/book-card.component';
 
 @Component({
     selector: 'app-book-new',
-    imports: [ReactiveFormsModule, NgIf, NgForOf, BookCardComponent],
+    imports: [ReactiveFormsModule, BookCardComponent],
     templateUrl: './book-new.component.html',
     styleUrls: ['./book-new.component.scss']
 })
