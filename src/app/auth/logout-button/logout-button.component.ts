@@ -1,5 +1,5 @@
-import { DOCUMENT } from "@angular/common";
-import { Component, inject } from "@angular/core";
+
+import { Component, inject, DOCUMENT } from "@angular/core";
 import { AuthService } from "@auth0/auth0-angular";
 
 @Component({
